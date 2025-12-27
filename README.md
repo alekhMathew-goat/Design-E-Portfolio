@@ -1,6 +1,6 @@
 # Design-E-Portfolio
 
-Design-E-Portfolio is a web application implemented as an online portfolio for a Digital Design MYP e-portfolio submission. It presents project work, user profile information, and request/feedback flows intended for review and demonstration purposes.
+Gran-assist is a web application designed for a Digital Design MYP e-portfolio submission. It presents project work, user profile information, and request/feedback flows intended for review and demonstration purposes.
 
 ## Purpose
 
@@ -65,7 +65,7 @@ The steps below produce an equivalent project structure and features. They are w
 2) Initialize a new Next.js application with TypeScript and App Router
 
 ```bash
-pnpm create next-app@latest my-portfolio -- --ts --experimental-app
+npm create next-app@latest my-portfolio -- --ts --experimental-app
 cd my-portfolio
 ```
 
@@ -81,14 +81,14 @@ cd my-portfolio
 Install the runtime dependencies used in this repository (examples):
 
 ```bash
-pnpm add react react-dom next lucide-react react-hook-form leafLet class-variance-authority clsx date-fns
-pnpm add @radix-ui/react-accordion @radix-ui/react-dialog @vercel/analytics
+npm add react react-dom next lucide-react react-hook-form leafLet class-variance-authority clsx date-fns
+npm add @radix-ui/react-accordion @radix-ui/react-dialog @vercel/analytics
 ```
 
 Install development dependencies and Tailwind:
 
 ```bash
-pnpm add -D tailwindcss postcss autoprefixer typescript @types/node @types/react @types/react-dom
+npm add -D tailwindcss postcss autoprefixer typescript @types/node @types/react @types/react-dom
 npx tailwindcss init -p
 ```
 
@@ -138,13 +138,13 @@ Add or confirm scripts in `package.json`:
 Run the dev server:
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 8) Production build and deployment
 
-- Build locally: `pnpm build` then `pnpm start` to verify production behavior.
+- Build locally: `npm build` then `npm start` to verify production behavior.
 - For hosting, use any platform that supports Next.js (set Node version to match your environment). Deploy the repository and set environment variables if you introduce server-side services.
 
 Notes and limitations
