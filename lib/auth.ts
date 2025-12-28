@@ -28,6 +28,7 @@ export interface Request {
   type: string
   title: string
   description: string
+  priority: "low" | "medium" | "high" | "urgent"
   location: {
     lat: number
     lng: number

@@ -17,6 +17,7 @@ export default function NewRequestPage() {
   const router = useRouter()
   const [selectedType, setSelectedType] = useState("")
   const [preferredTime, setPreferredTime] = useState("")
+  const [priority, setPriority] = useState("")
   const [notes, setNotes] = useState("")
   const [location, setLocation] = useState<{ address: string; lat: number; lng: number } | null>(null)
   const [user, setUser] = useState<any>(null)
@@ -33,7 +34,7 @@ export default function NewRequestPage() {
   }, [router])
 
   const handleSubmit = () => {
-    if (!user || !location) return
+    if (!user || !location || !priority) return
 
     const requestTypeLabels: Record<string, string> = {
       talk: "Someone to talk to",
@@ -50,6 +51,7 @@ export default function NewRequestPage() {
       type: selectedType,
       title: requestTypeLabels[selectedType] || selectedType,
       description: notes || "No additional notes",
+      priority: priority as "low" | "medium" | "high" | "urgent",
       location,
       date: new Date().toLocaleDateString(),
       time: preferredTime,
@@ -119,6 +121,33 @@ export default function NewRequestPage() {
 
               <LocationPicker onLocationSelect={setLocation} />
 
+              {/* Priority Level */}
+              <div className="space-y-3">
+                <Label htmlFor="priority" className="text-base font-medium">
+                  Priority level
+                </Label>
+                <Select value={priority} onValueChange={setPriority}>
+                  <SelectTrigger id="priority" className="h-12 text-base">
+                    <SelectValue placeholder="Select priority level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="low">
+                      <span className="flex items-center gap-2">Low - Can wait a few days</span>
+                    </SelectItem>
+                    <SelectItem value="medium">
+                      <span className="flex items-center gap-2">Medium - Needed within 1-2 days</span>
+                    </SelectItem>
+                    <SelectItem value="high">
+                      <span className="flex items-center gap-2">High - Needed today or tomorrow</span>
+                    </SelectItem>
+                    <SelectItem value="urgent">
+                      <span className="flex items-center gap-2">Urgent - Needed immediately</span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-sm text-muted-text">Higher priority requests are displayed first to helpers</p>
+              </div>
+
               {/* Preferred Time */}
               <div className="space-y-3">
                 <Label htmlFor="time" className="text-base font-medium">
@@ -157,7 +186,7 @@ export default function NewRequestPage() {
                 onClick={handleSubmit}
                 size="lg"
                 className="w-full bg-primary hover:bg-primary/90 text-white text-lg h-14"
-                disabled={!selectedType || !preferredTime || !location}
+                disabled={!selectedType || !preferredTime || !location || !priority}
               >
                 Post Request
               </Button>

@@ -20,7 +20,7 @@ export default function HelpPage() {
                   <div>
                     <h2 className="text-xl font-semibold text-text mb-3">Emergency guidance</h2>
                     <p className="text-muted-text leading-relaxed">
-                      If someone is in immediate danger or needs urgent medical care, contact local emergency services
+                      If someone is in immediate danger or needs urgent medical care, call <strong>112</strong> or contact local emergency services
                       right away.
                     </p>
                   </div>
