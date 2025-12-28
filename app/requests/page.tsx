@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import OnboardingTip from "@/components/ui/onboarding-tip"
+import useFirstVisit from "@/hooks/use-first-visit"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Map } from "@/components/map"
@@ -22,6 +24,7 @@ export default function RequestsPage() {
   const searchParams = useSearchParams()
   const posted = searchParams.get("posted")
   const [requests, setRequests] = useState<any[]>([])
+  const [seenBrowseTip, markSeenBrowseTip] = useFirstVisit("seen_browse_requests_tip")
 
   useEffect(() => {
     const allRequests = getRequests()
@@ -76,6 +79,13 @@ export default function RequestsPage() {
           )}
 
           <div className="space-y-8">
+            {!seenBrowseTip && (
+              <OnboardingTip
+                title="Browse requests — quick tips"
+                description="Tap map markers to view details. If you're a helper, accept a request to connect."
+                onClose={markSeenBrowseTip}
+              />
+            )}
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-text mb-2">Nearby Requests</h1>
               <p className="text-muted-text">View requests on the map and click to see full details. Accept a request to connect with the requester.</p>

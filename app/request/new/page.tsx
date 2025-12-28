@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import OnboardingTip from "@/components/ui/onboarding-tip"
+import useFirstVisit from "@/hooks/use-first-visit"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -15,6 +17,7 @@ import { getCurrentUser, saveRequest } from "@/lib/auth"
 
 export default function NewRequestPage() {
   const router = useRouter()
+  const [seenPostTip, markSeenPostTip] = useFirstVisit("seen_post_request_tip")
   const [selectedType, setSelectedType] = useState("")
   const [preferredTime, setPreferredTime] = useState("")
   const [priority, setPriority] = useState("")
@@ -88,6 +91,13 @@ export default function NewRequestPage() {
 
       <main className="flex-1 py-16 px-4">
         <div className="container mx-auto max-w-3xl">
+          {!seenPostTip && (
+            <OnboardingTip
+              title="Posting a request — quick tips"
+              description="Choose a clear priority, add your location, and a short note. Helpers see higher-priority requests first."
+              onClose={markSeenPostTip}
+            />
+          )}
           <Card className="border-2 border-border">
             <CardHeader>
               <CardTitle className="text-2xl md:text-3xl text-center">What do you need help with today?</CardTitle>
