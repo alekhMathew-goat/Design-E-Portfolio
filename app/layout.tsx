@@ -8,7 +8,7 @@ import "./globals.css"
 const _geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Neighborly Care",
+  title: "Gran-assist",
   description: "Simple support for grandparents, powered by the community.",
   generator: "v0.app",
 }

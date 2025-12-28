@@ -13,7 +13,7 @@ export function Footer() {
               Feedback
             </Link>
           </div>
-          <p className="text-sm text-muted-text">© Neighborly Care</p>
+          <p className="text-sm text-muted-text">© Gran-assist</p>
         </div>
       </div>
     </footer>
