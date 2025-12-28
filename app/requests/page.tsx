@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Map } from "@/components/map"
 import Link from "next/link"
 import { MessageCircle, Hospital, ShoppingBag, Phone, CheckCircle, MapPin, AlertCircle } from "lucide-react"
-import { getRequests } from "@/lib/auth"
+import { getRequests, getCurrentUser, updateRequest } from "@/lib/auth"
 
 const iconMap: Record<string, any> = {
   talk: MessageCircle,
@@ -38,13 +38,29 @@ export default function RequestsPage() {
     setRequests(sortedRequests)
   }, [])
 
+  const currentUser = getCurrentUser()
+
   const markers = requests.map((req) => ({
+    id: req.id,
     position: [req.location.lat, req.location.lng] as [number, number],
-    popup: req.title,
+    popup: `<strong>${req.title}</strong><br/>${req.location.address}`,
+    acceptable: currentUser?.role === "helper" && req.status === "open",
   }))
 
   const centerLat = requests.length > 0 ? requests[0].location.lat : 40.7128
   const centerLng = requests.length > 0 ? requests[0].location.lng : -74.006
+
+  function acceptRequest(requestId: string) {
+    const user = getCurrentUser()
+    if (!user) return
+
+    updateRequest(requestId, {
+      status: "accepted",
+      acceptedBy: { id: user.id, name: user.profile.name, phone: user.profile.phone },
+    })
+
+    setRequests((prev) => prev.map((r) => (r.id === requestId ? { ...r, status: "accepted", acceptedBy: { id: user.id, name: user.profile.name, phone: user.profile.phone } } : r)))
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -59,13 +75,25 @@ export default function RequestsPage() {
             </div>
           )}
 
-          <h1 className="text-3xl md:text-4xl font-bold text-text mb-8">Nearby Requests</h1>
-
-          {requests.length > 0 && (
-            <div className="mb-8 rounded-lg overflow-hidden border-2 border-border">
-              <Map center={[centerLat, centerLng]} zoom={14} markers={markers} height="400px" />
+          <div className="space-y-8">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-text mb-2">Nearby Requests</h1>
+              <p className="text-muted-text">View requests on the map and click to see full details. Accept a request to connect with the requester.</p>
             </div>
-          )}
+
+            {requests.length > 0 && (
+              <Card className="border-2 border-border overflow-hidden">
+                <CardContent className="p-0">
+                  <Map center={[centerLat, centerLng]} zoom={13} markers={markers} height="450px" onAccept={acceptRequest} />
+                  <div className="p-4 bg-surface border-t border-border">
+                    <div className="flex items-center gap-2 text-sm text-muted-text">
+                      <MapPin className="w-4 h-4" />
+                      <span><strong>{requests.length}</strong> open request{requests.length !== 1 ? 's' : ''} in your area</span>
+                    </div>
+                  </div>
+                </CardContent>
+                </Card>
+              )}
 
           {requests.length === 0 ? (
             <Card className="border-2 border-border">
@@ -125,9 +153,20 @@ export default function RequestsPage() {
                             <div className="font-semibold text-text mb-1">{request.userName}</div>
                             <div className="text-xs">{new Date(request.createdAt).toLocaleDateString()}</div>
                           </div>
-                          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white w-full">
-                            <Link href={`/requests/${request.id}`}>View Details</Link>
-                          </Button>
+                          <div className="flex flex-col gap-2">
+                            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white w-full">
+                              <Link href={`/requests/${request.id}`}>View Details</Link>
+                            </Button>
+
+                            {currentUser?.role === "helper" && request.status === "open" && (
+                              <Button onClick={() => acceptRequest(request.id)} variant="secondary" size="lg" className="w-full">
+                                Accept Request
+                              </Button>
+                            )}
+                            {request.status === "accepted" && (
+                              <div className="text-sm text-muted-text text-center">Accepted by {request.acceptedBy?.name}</div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </CardContent>
@@ -137,6 +176,7 @@ export default function RequestsPage() {
             </div>
           )}
         </div>
+      </div>
       </main>
 
       <Footer />
