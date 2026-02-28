@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -13,6 +12,7 @@ import { Label } from "@/components/ui/label"
 import { login } from "@/lib/auth"
 import Link from "next/link"
 import { LogIn, AlertCircle } from "lucide-react"
+import { Header } from "@/components/AtomicDesign/Organisms/Header"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")

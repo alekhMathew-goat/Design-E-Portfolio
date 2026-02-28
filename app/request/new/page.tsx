@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import OnboardingTip from "@/components/ui/onboarding-tip"
 import useFirstVisit from "@/hooks/use-first-visit"
@@ -14,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { LocationPicker } from "@/components/location-picker"
 import { MessageCircle, Hospital, ShoppingBag, Phone } from "lucide-react"
 import { getCurrentUser, saveRequest } from "@/lib/auth"
+import { Header } from "@/components/AtomicDesign/Organisms/Header"
 
 export default function NewRequestPage() {
   const router = useRouter()
@@ -133,11 +133,10 @@ export default function NewRequestPage() {
                       <button
                         key={type.value}
                         onClick={() => setSelectedType(type.value)}
-                        className={`p-4 rounded-lg border-2 text-left transition-all flex items-center gap-4 ${
-                          selectedType === type.value
-                            ? "border-primary bg-primary/5"
-                            : "border-border hover:border-primary/50"
-                        }`}
+                        className={`p-4 rounded-lg border-2 text-left transition-all flex items-center gap-4 ${selectedType === type.value
+                          ? "border-primary bg-primary/5"
+                          : "border-border hover:border-primary/50"
+                          }`}
                       >
                         <Icon
                           className={`w-6 h-6 !text-[#50966d] ${selectedType === type.value ? "text-[#50966d]" : "text-muted-text"}`}
@@ -218,7 +217,7 @@ export default function NewRequestPage() {
                 className="w-full bg-[#dd673c] hover:bg-[#dd673c]/90 text-white text-lg h-14"
                 disabled={!selectedType || !preferredTime || !location || !priority}
               >
-                {!selectedType || !preferredTime || !location || !priority 
+                {!selectedType || !preferredTime || !location || !priority
                   ? "Please complete all required fields"
                   : "Post Request"}
               </Button>

@@ -1,9 +1,10 @@
-import { Header } from "@/components/header"
+
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { User, Phone, AlertCircle } from "lucide-react"
+import { Header } from "@/components/AtomicDesign/Organisms/Header"
 
 export default function GrandparentProfilePage() {
   return (

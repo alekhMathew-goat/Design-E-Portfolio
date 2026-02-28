@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { CheckCircle, User, Phone, MapPin, Clock } from "lucide-react"
 import { getRequestById } from "@/lib/auth"
+import { Header } from "@/components/AtomicDesign/Organisms/Header"
 
 export default function ConfirmationPage() {
   const searchParams = useSearchParams()

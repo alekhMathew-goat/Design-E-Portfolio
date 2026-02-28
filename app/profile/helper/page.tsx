@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -11,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { User, Phone, MapPin, Star, CheckCircle } from "lucide-react"
 import { getCurrentUser, updateUser } from "@/lib/auth"
+import { Header } from "@/components/AtomicDesign/Organisms/Header"
 
 export default function HelperProfilePage() {
   const [user, setUser] = useState<any>(null)

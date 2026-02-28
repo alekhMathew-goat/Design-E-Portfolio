@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -10,6 +9,7 @@ import { Map } from "@/components/map"
 import Link from "next/link"
 import { Clock, AlertTriangle, User, Phone, MapPin, CheckCircle, MessageSquare, AlertCircle } from "lucide-react"
 import { getRequestById, updateRequest, getCurrentUser } from "@/lib/auth"
+import { Header } from "@/components/AtomicDesign/Organisms/Header"
 
 export default function RequestDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()

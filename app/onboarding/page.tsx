@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { UserRound, HandHeart } from "lucide-react"
 import { getCurrentUser } from "@/lib/auth"
+import { Header } from "@/components/AtomicDesign/Organisms/Header"
 
 export default function OnboardingPage() {
   const [user, setUser] = useState<any>(null)

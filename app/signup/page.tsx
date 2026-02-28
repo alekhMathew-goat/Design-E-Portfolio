@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -14,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { signup } from "@/lib/auth"
 import Link from "next/link"
 import { UserPlus, AlertCircle } from "lucide-react"
+import { Header } from "@/components/AtomicDesign/Organisms/Header"
 
 export default function SignupPage() {
   const [email, setEmail] = useState("")
