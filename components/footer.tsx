@@ -1,11 +1,9 @@
 import Link from "next/link"
-
 export function Footer() {
   return (
     <footer className="border-t border-border bg-surface mt-auto">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row items-center md:justify-between gap-6">
-          
           {/* Links */}
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <Link
@@ -21,7 +19,6 @@ export function Footer() {
               Feedback
             </Link>
           </div>
-
           {/* Emergency Call */}
           <a
             href="tel:112"
@@ -29,7 +26,6 @@ export function Footer() {
           >
             CALL 112 FOR EMERGENCY
           </a>
-
           {/* Copyright */}
           <p className="text-sm text-muted-text text-center">
             © Gran-assist

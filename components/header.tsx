@@ -35,9 +35,9 @@ export function Header() {
         {/* <Link href="/" className="text-xl font-semibold text-text hover:text-primary transition-colors">
           Gran-assist
         </Link> */}
-<Link href="/">
-        <Image src={logo} alt="Gran-assist Logo" width={80} height={80} className="object-contain" />
-</Link>
+        <Link href="/">
+          <Image src={logo} alt="Gran-assist Logo" width={80} height={80} className="object-contain" />
+        </Link>
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-base text-muted-text hover:text-text transition-colors">
@@ -90,43 +90,43 @@ export function Header() {
               </Button> */}
 
               <div className="hidden md:flex items-center gap-3">
-  {user ? (
-    <>
-      <span className="text-sm text-muted-text">Hello, {user.profile.name}</span>
+                {user ? (
+                  <>
+                    <span className="text-sm text-muted-text">Hello, {user.profile.name}</span>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="border-2 bg-transparent">
-            <User className="w-5 h-5" />
-          </Button>
-        </DropdownMenuTrigger>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="icon" className="border-2 bg-transparent">
+                          <User className="w-5 h-5" />
+                        </Button>
+                      </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => router.push(user.role === "grandparent" ? "/profile/grandparent" : "/profile/helper")}>
-            Profile
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={handleLogout} className="text-red-600">
-            <LogOut className="w-4 h-4 mr-2" />
-            Sign Out
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
-  ) : (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="border-2 bg-transparent">
-          <User className="w-5 h-5" />
-        </Button>
-      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => router.push(user.role === "grandparent" ? "/profile/grandparent" : "/profile/helper")}>
+                          Profile
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={handleLogout} className="text-red-600">
+                          <LogOut className="w-4 h-4 mr-2" />
+                          Sign Out
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </>
+                ) : (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="icon" className="border-2 bg-transparent">
+                        <User className="w-5 h-5" />
+                      </Button>
+                    </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => router.push("/login")}>Sign In</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push("/signup")}>Sign Up</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )}
-</div>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem onClick={() => router.push("/login")}>Sign In</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => router.push("/signup")}>Sign Up</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
+              </div>
             </>
           )}
         </div>
