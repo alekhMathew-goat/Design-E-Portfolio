@@ -1,13 +1,26 @@
+// IconButton.tsx =====================
+"use client"
+import React from "react"
 import { Button } from "@/components/ui/button"
-interface Props {
+
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode
-    onClick?: () => void
 }
 
-export const IconButton = ({ children, onClick }: Props) => {
-    return (
-        <Button variant="outline" size="icon" className="border-2 bg-transparent" onClick={onClick}>
-            {children}
-        </Button>
-    )
-}
+export const IconButton = React.forwardRef<HTMLButtonElement, Props>(
+    ({ children, ...props }, ref) => {
+        return (
+            <Button
+                ref={ref}          // forward the ref here
+                variant="outline"
+                size="icon"
+                className="border-2 bg-transparent"
+                {...props}         // pass all props like onClick
+            >
+                {children}
+            </Button>
+        )
+    }
+)
+
+IconButton.displayName = "IconButton"
