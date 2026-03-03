@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { Footer } from "@/components/footer"
-import OnboardingTip from "@/components/ui/onboarding-tip"
+import OnboardingTip from "@/components/AtomicDesign/Atoms/OnboardingTip"
 import useFirstVisit from "@/hooks/use-first-visit"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"

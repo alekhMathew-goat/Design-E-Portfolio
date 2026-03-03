@@ -40,8 +40,8 @@ export const GrandparentProfileCard = ({ user, onUpdate }: Props) => {
                     />
                 ) : (
                     <>
-                        <ProfileItem icon={<User className="w-6 h-6 text-[#50966d]" />} label="Name" value={user.profile.name} />
-                        {user.profile.age && <ProfileItem icon={<User className="w-6 h-6 text-[#50966d]" />} label="Age" value={user.profile.age.toString()} />}
+                        <ProfileItem icon={<User className="w-6 h-6 text-lg text-[#50966d]" />} label="Name" value={user.profile.name} />
+                        {user.profile.age && <ProfileItem icon={<User className="w-6 h-6 text-lg text-[#50966d]" />} label="Age" value={user.profile.age.toString()} />}
                         <ProfileItem icon={<Phone className="w-6 h-6 text-[#50966d]" />} label="Phone" value={user.profile.phone} />
                         {user.profile.preferredContact && (
                             <ProfileItem icon={<Phone className="w-6 h-6 text-[#50966d]" />} label="Preferred Contact" value={user.profile.preferredContact} />

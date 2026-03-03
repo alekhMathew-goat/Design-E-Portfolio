@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
-import { Map } from "./map"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
@@ -290,17 +289,17 @@ function MapClickableWrapper({
       // Add current location marker
       // const marker = L.marker(center).addTo(map).bindPopup("Your selected location")
       // Create a custom red marker icon
-const redIcon = L.icon({
-  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-})
+      const redIcon = L.icon({
+        iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      })
 
-// Add current location marker with red icon
-const marker = L.marker(center, { icon: redIcon }).addTo(map).bindPopup("Your selected location")
+      // Add current location marker with red icon
+      const marker = L.marker(center, { icon: redIcon }).addTo(map).bindPopup("Your selected location")
 
       mapInstanceRef.current = { map, marker }
     } else if (mapInstanceRef.current) {
